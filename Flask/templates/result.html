@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span>📅 Monday - Saturday, 8AM to 10PM</span>
+            <span>📞 Call us now +1 5589 55488 55</span>
+        </div>
+        <nav>
+            <div class="logo">MEDICIO</div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict-form" class="btn">Check your Blood Pressure</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="result-section">
+        <h2>Your Blood Pressure stage is: {{ prediction_text }}</h2>
+    </section>
+
+    <footer>
+        <div class="contact-info">
+            <p><strong>Medicio</strong><br>
+               The Smart Bridge<br>
+               Hyderabad, Telangana/India<br>
+               <strong>Phone:</strong> +1 5589 55488 55<br>
+               <strong>Email:</strong> info@example.com</p>
+            <div class="socials">
+                <a href="#">🐦</a> <a href="#">📘</a> <a href="#">💼</a> <a href="#">🔗</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

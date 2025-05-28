@@ -1,0 +1,98 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('"C:\Users\dell\Downloads\patient_data.csv"')
+df.rename(columns={'C':'Gender'},inplace=True)
+df.shape
+from sklearn.preprocessing import LabelEncoder
+columns=['Gender','Age','History','Patient',
+'TakeMedication',
+'Severity',
+'BreathShortness',
+'VisualChanges',
+'NoseBleeding',
+'Whendiagnoused',
+'Systolic',
+'Diastolic',
+'ControlledDiet',
+'Stages']
+
+label_encoder=LabelEncoder()
+for col in columns:
+  df[col]=label_encoder.fit_transform(df[col])
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split # Import train_test_split
+
+# Assuming 'Stages' is your target variable (y) and the rest are features (X)
+# You might need to adjust which columns are features based on your analysis
+X = df.drop('Stages', axis=1)
+y = df['Stages']
+
+# Split the data into training and
+ testing sets
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) # Adjust test_size and random_state as needed
+
+logistic_regression=LogisticRegression()
+logistic_regression.fit(x_train,y_train)
+y_pred=logistic_regression.predict(x_test)
+acc_lr=accuracy_score(y_test,y_pred)
+c_lr=classification_report(y_test,y_pred)
+print('Accuracy Score',acc_lr)
+print(c_lr)
+
+from sklearn.ensemble import RandomForestClassifier
+
+random_forest=RandomForestClassifier()
+random_forest.fit(x_train,y_train)
+y_pred=random_forest.predict(x_test)
+
+acc_rf=accuracy_score(y_test,y_pred)
+c_rf=classification_report(y_test,y_pred)
+print('Accuracy Score',acc_rf)
+print(c_rf) 
+
+from sklearn.tree import DecisionTreeClassifier
+
+decision_tree=DecisionTreeClassifier()
+decision_tree.fit(x_train,y_train)
+y_pred=decision_tree.predict(x_test)
+
+acc_dt =accuracy_score(y_test,y_pred)
+c_dt=classification_report(y_test,y_pred)
+print('Accuracy Score',acc_dt)
+print(c_dt) 
+
+from sklearn.naive_bayes import GaussianNB
+
+naive_bayes=GaussianNB()
+naive_bayes.fit(x_train,y_train)
+y_pred=naive_bayes.predict(x_test)
+
+acc_nb=accuracy_score(y_test,y_pred)
+c_nb=classification_report(y_test,y_pred)
+print('Accuracy Score',acc_nb)
+print(c_nb)
+
+from sklearn.naive_bayes import MultinomialNB
+
+mNB=MultinomialNB()
+mNB.fit(x_train,y_train)
+y_pred=mNB.predict(x_test)
+
+acc_mnb=accuracy_score(y_test,y_pred)
+c_mnb=classification_report(y_test,y_pred)
+print('Accuracy Score',acc_mnb)
+print(c_mnb)
+        
+
+model=pd.DataFrame({'Model':['Linear Regression','Decision Tree Classifier','RandomForest Classifier','Gaussian Naive Bayes','Multinomial Naive Bayes'],
+             'Score':[acc_lr,acc_dt,acc_rf,acc_nb,acc_mnb]})
+
+import pickle
+import warnings
+pickle.dump(random_forest,open('model.pkl','wb'))

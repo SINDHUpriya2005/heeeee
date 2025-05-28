@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Your Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MEDICIO</div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/predict-form" class="btn active">Check your Blood Pressure</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <h2>CHECK YOUR HEALTH!</h2>
+        <p>Checking blood pressure stage is crucial to assess cardiovascular health, detect hypertension or hypotension, and mitigate risks.</p>
+
+        <form action="/predict" method="POST">
+            <select name="Gender"><option>Male</option><option>Female</option></select>
+            <select name="Age"><option>Select Age</option> ... </select>
+            <select name="Patient"><option>Select Patient</option> ... </select>
+            <select name="BreathShortness"><option>Do you have Breath Shortness</option> ... </select>
+            <select name="VisualChanges"><option>Are there Visual Changes</option> ... </select>
+            <select name="NoseBleeding"><option>No</option><option>Yes</option></select>
+            <select name="Whendiagnoused"><option>When diagnosed</option> ... </select>
+            <select name="Systolic"><option>Select Systolic</option> ... </select>
+            <select name="Diastolic"><option>Select Diastolic</option> ... </select>
+            <select name="ControlledDiet"><option>Any Diet Followed</option> ... </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicio - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span>📅 Monday - Saturday, 8AM to 10PM</span>
+            <span>📞 Call us now +1 5589 55488 55</span>
+        </div>
+        <nav>
+            <div class="logo">MEDICIO</div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/predict-form" class="btn">Check your Blood Pressure</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="{{ url_for('static', filename='images/hero-bp.jpg') }}" alt="BP Equipment">
+        <div class="hero-text">
+            <h2>Welcome to Medicio</h2>
+            <p>Welcome to our platform dedicated to monitoring blood pressure stages. Discover your current status and take proactive steps towards better health management.</p>
+            <a href="#details" class="btn">Read More</a>
+        </div>
+    </section>
+</body>
+</html>
